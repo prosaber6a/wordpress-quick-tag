@@ -17,5 +17,9 @@ function quicktag_load_textdomain () {
 add_action('plugins_loaded', 'quicktag_load_textdomain');
 
 
-
-
+function quicktag_admin_assets ($screen) {
+	if ('post.php' == $screen) {
+		wp_enqueue_script('quick-tag-js', plugin_dir_url(__FILE__) .'/assets/admin/js/quick-tag.js', array('quicktags'), time(), true);
+	}
+}
+add_action('admin_enqueue_scripts', 'quicktag_admin_assets');
